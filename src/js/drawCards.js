@@ -11,8 +11,8 @@ async function convertToJson(res) {
   }
 
 export async function getDeck() {
-    const deck = getLocalStorage("deck");
-    if (!deck) {
+    // const deck = getLocalStorage("deck");
+    // if (!deck) {
         const options = {
         method: "GET",
         headers: {
@@ -21,14 +21,14 @@ export async function getDeck() {
     };
     const response = await fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1', options).then(convertToJson);
     setLocalStorage("deck", response);
-    } else if (deck.remaining <= 0) {
-        const reshuffledDeck = reshuffle(deckId);
-        setLocalStorage("deck", reshuffledDeck);
-    }
+//     } else if (deck) {
+//         const reshuffledDeck = reshuffle();
+//         setLocalStorage("deck", reshuffledDeck);
+//     }
 }
-export async function drawCards(amount, shuffle = false) {
-    const deck = getLocalStorage("deck");
-    const deckId = deck.deck_id;
+export async function getCards(amount, deckId, shuffle = false) {
+    // const deck = getLocalStorage("deck");
+    // const deckId = deck.deck_id;
     const options = {
         method: "GET",
         headers: {
@@ -53,5 +53,15 @@ export async function reshuffle(){
     return response;
 }
 
-getDeck();
-// console.log(drawCards(7, reshuffle()));
+export async function addingToPiles(pile, card) {
+    const deck = getLocalStorage("deck");
+    const deckId = deck.deck_id;
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    const response = await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/pile/${pile}/add/?cards=${card}`, options).then(convertToJson);
+    return response;
+}
