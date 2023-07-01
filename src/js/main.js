@@ -1,25 +1,24 @@
-import { getDeck, getCards, addingToPiles } from "./drawCards.js";
+import { getDeck, getCards } from "./drawCards.js";
 import { setLocalStorage, getLocalStorage} from "./utils.mjs";
-import { cpuCardTable, playerCardTable } from "./display.js";
+import { CardTable } from "./display.js";
 
 
-let cpuEventListener = document.querySelector(".cpu-hand");
 let playerEventListener = document.querySelector(".player-hand");
 
 async function getHands() {
+    const deck = getLocalStorage("deck");
+    //if (!deck) {
     getDeck();
-    let deck = getLocalStorage("deck");
     const deckId = deck.deck_id;
     //console.log(deckId);
-    let playerOneHand = await getCards(26, deckId);
-    setLocalStorage("PlayerOne-Hand", playerOneHand);
+    let cpuHand = await getCards(26, deckId);
+    setLocalStorage("Cpu-Hand", cpuHand);
     //console.log(deckId)
-    let playerTwoHand = await getCards(26, deckId);
-    setLocalStorage("PlayerTwo-Hand", playerTwoHand);
-    console.log(getDeck());
+    let playerHand = await getCards(26, deckId);
+    setLocalStorage("Player-Hand", playerHand);
+    //} else {}
 }
 
+getHands();
 
-cpuEventListener.addEventListener("click", cpuCardTable);
-
-playerEventListener.addEventListener("click", playerCardTable);
+playerEventListener.addEventListener("click", CardTable);

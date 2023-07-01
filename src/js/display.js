@@ -1,35 +1,56 @@
 import { getLocalStorage } from "./utils.mjs";
+import { playerWins, cpuWins } from "./functionality.js";
 
-export async function cpuCardTable() {
-    const playerOneCards = getLocalStorage("PlayerOne-Hand");
-    console.log(playerOneCards);
-    if (!playerOneCards) {
-        const cardItems = "Your hand is empty";
+
+export async function CardTable() {
+    const CpuCards = getLocalStorage("Cpu-Hand");
+    //console.log(CpuCards);
+    if (!CpuCards) {
+        const cardItems = "Computer hand is empty";
         document.querySelector(".cpu-table").innerHTML = cardItems;
     } else {
-        const cardItems = playerOneCards.cards.map((item) => cardTemplate(item));
-        document.querySelector(".cpu-table").innerHTML = cardItems.join("");
+        const cardItems = CpuCards.cards.map((item) => cpuTemplate(item));
+        document.querySelector(".cpu-table").innerHTML = cardItems[0];
+    }
+    const playerCards = getLocalStorage("Player-Hand");
+    //console.log(playerCards);
+    if (!playerCards) {
+        const cardItems = "Your hand is empty";
+        document.querySelector(".player-table").innerHTML = cardItems;
+    } else {
+        const cardItems = playerCards.cards.map((item) => playerTemplate(item));
+        document.querySelector(".player-table").innerHTML = cardItems[0];
+    }
+    const curValCpu = CpuCards.cards[0].value;
+    const curValPlay = playerCards.cards[0].value;
+    if (curValCpu > curValPlay){
+        cpuWins();
+        //setTimeout(location.reload(), 50000);
+    }
+    if (curValPlay > curValCpu){
+        playerWins();
+        //setTimeout(location.reload(), 50000);
     }
 };
 
-export async function playerCardTable() {
-    const playerTwoCards = getLocalStorage("PlayerTwo-Hand");
-    console.log(playerTwoCards);
-    if (!playerTwoCards) {
-        const cardItems = "Your hand is empty";
-        document.querySelector(".player-table").innerHTML = cardItems;
-    } else {
-        const cardItems = playerTwoCards.cards.map((item) => cardTemplate(item));
-        document.querySelector(".player-table").innerHTML = cardItems;
-    }
-}
 
-function cardTemplate(card){
-    const newCard = `<li class="playing-card">
-    <img
+function cpuTemplate(card){
+    const newCard = `<li class="cpu-playing-card">
+    <img class="card-image"
         src="${card.image}"
-        alt="${card.value} ${card.suit}">
+        alt="${card.value} of ${card.suit}">
     </li>`;
     
     return newCard;
 }
+
+function playerTemplate(card){
+    const newCard = `<li class="player-playing-card">
+    <img class="card-image"
+        src="${card.image}"
+        alt="${card.value} of ${card.suit}">
+    </li>`;
+    
+    return newCard;
+}
+
