@@ -1,3 +1,57 @@
-li.playing-card::marker{
+::marker{
     display: none;
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.game{
+    height: 100dvh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: green;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+
+.war{
+    display:flex;
+    flex-direction: column;
+}
+
+.cpu-hand-img{
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: 1px 4px 4px black;
+}
+
+.player-hand-img{
+    border-radius: 10px;
+    width: 125px;
+    box-shadow: 1px 4px 4px black;
+    cursor: pointer;
+}
+
+.card-image{
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: 1px 4px 4px black;
+}
+
+.player-table{
+    padding: 0;
+}
+.player-hand{
+    display: block;
+    border: 0;
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+}
+
+#text {
+    text-align: center;
 }
