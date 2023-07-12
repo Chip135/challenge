@@ -38,6 +38,7 @@ export function cpuWins (){
 export function playerWinsDraw (){
     const cpuCards = getLocalStorage("Cpu-Hand");
     const playCards = getLocalStorage("Player-Hand");
+    document.querySelector(".winner").innerText = "You Win the Hand"
 
     const losCard = cpuCards.cards[0];
     const winCard = playCards.cards[0];
@@ -61,7 +62,7 @@ export function playerWinsDraw (){
 export function cpuWinsDraw (){
     const cpuCards = getLocalStorage("Cpu-Hand");
     const playCards = getLocalStorage("Player-Hand");
-    document.querySelector(".winner").innerText = "Computer Wins Hand"
+    document.querySelector(".winner").innerText = "Computer Wins the Hand"
 
     const losCard = playCards.cards[0];
     const winCard = cpuCards.cards[0];

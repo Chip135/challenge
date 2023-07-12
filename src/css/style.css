@@ -28,28 +28,34 @@
     box-shadow: 1px 4px 4px black;
 }
 
+.cpu-hand-img:focus{
+    transform: translateX(325px) translateY(25px) rotateY(90deg); 
+}
+
 .player-hand-img{
     border-radius: 10px;
     width: 125px;
-    box-shadow: 1px 4px 4px black;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0);
     cursor: pointer;
 }
 
 .card-image{
     width: 125px;
     border-radius: 10px;
-    box-shadow: 1px 4px 4px black;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0);
 }
 
 .player-table{
     padding: 0;
 }
 .player-hand{
-    display: block;
     border: 0;
     padding: 0;
-    color: white;
     border-radius: 5px;
+}
+.player-hand:focus{
+    transform: translateX(-325px) translateY(25px) rotateY(90deg); 
+    transition: transform .5s; 
 }
 
 #text {
