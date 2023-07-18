@@ -1,6 +1,21 @@
 import { getLocalStorage } from "./utils.mjs";
 import { playerWins, cpuWins, draw } from "./functionality.js";
 
+const CARD_VALUE_MAP = {
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "JACK": 11,
+    "QUEEN": 12,
+    "KING": 13,
+    "ACE": 14,
+}
 
 export async function CardTable() {
     const CpuCards = getLocalStorage("Cpu-Hand");
@@ -23,23 +38,23 @@ export async function CardTable() {
     }
     const curValCpu = CpuCards.cards[0].value;
     const curValPlay = playerCards.cards[0].value;
-    if (curValCpu > curValPlay){
+    if (CARD_VALUE_MAP[curValCpu] > CARD_VALUE_MAP[curValPlay]){
         cpuWins();
         setTimeout(() => {
             window.location.reload();
-        }, 3000);
+        }, 2000);
     }
-    if (curValPlay > curValCpu){
+    if (CARD_VALUE_MAP[curValPlay] > CARD_VALUE_MAP[curValCpu]){
         playerWins();
         setTimeout(() => {
             window.location.reload();
-        }, 3000);
+        }, 2000);
     }
-    if (curValCpu == curValPlay){
+    if (CARD_VALUE_MAP[curValCpu] == CARD_VALUE_MAP[curValPlay]){
         setTimeout(draw, 1000);
         setTimeout(() => {
             window.location.reload();
-        }, 6000);
+        }, 4000);
     }
 };
 

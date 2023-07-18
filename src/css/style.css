@@ -13,7 +13,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: green;
-    border: solid 2px black;
+    border: solid 5px black;
     border-radius: 5px;
 }
 
@@ -26,10 +26,8 @@
     width: 125px;
     border-radius: 10px;
     box-shadow: 1px 4px 4px black;
-}
-
-.cpu-hand-img:focus{
-    transform: translateX(325px) translateY(25px) rotateY(90deg); 
+    user-select: none;
+    transition: transform 2s;
 }
 
 .player-hand-img{
@@ -37,27 +35,34 @@
     width: 125px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0);
     cursor: pointer;
+    user-select: none;
 }
 
 .card-image{
     width: 125px;
     border-radius: 10px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0);
+    user-select: none;
 }
 
 .player-table{
     padding: 0;
 }
+
 .player-hand{
     border: 0;
     padding: 0;
     border-radius: 5px;
-}
-.player-hand:focus{
-    transform: translateX(-325px) translateY(25px) rotateY(90deg); 
-    transition: transform .5s; 
+    transition: transform 2s;
 }
 
 #text {
     text-align: center;
+    user-select: none;
+    color: white;
+    font-size: 1.1em;
+}
+
+.player-hand:focus {
+    transform: rotate(180deg);
 }

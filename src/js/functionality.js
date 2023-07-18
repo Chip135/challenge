@@ -1,10 +1,26 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
+const CARD_VALUE_MAP = {
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "JACK": 11,
+    "QUEEN": 12,
+    "KING": 13,
+    "ACE": 14,
+}
+
 
 export function playerWins (){
     const cpuCards = getLocalStorage("Cpu-Hand");
     const playCards = getLocalStorage("Player-Hand");
-    document.querySelector(".winner").innerText = "You Win the Hand"
+    document.querySelector(".winner").innerText = "You Won"
 
     const losCard = cpuCards.cards[0];
     const winCard = playCards.cards[0];
@@ -21,7 +37,7 @@ export function playerWins (){
 export function cpuWins (){
     const cpuCards = getLocalStorage("Cpu-Hand");
     const playCards = getLocalStorage("Player-Hand");
-    document.querySelector(".winner").innerText = "Computer Wins the Hand"
+    document.querySelector(".winner").innerText = "You lost"
 
     const losCard = playCards.cards[0];
     const winCard = cpuCards.cards[0];
@@ -38,7 +54,7 @@ export function cpuWins (){
 export function playerWinsDraw (){
     const cpuCards = getLocalStorage("Cpu-Hand");
     const playCards = getLocalStorage("Player-Hand");
-    document.querySelector(".winner").innerText = "You Win the Hand"
+    document.querySelector(".winner").innerText = "You Won"
 
     const losCard = cpuCards.cards[0];
     const winCard = playCards.cards[0];
@@ -62,7 +78,7 @@ export function playerWinsDraw (){
 export function cpuWinsDraw (){
     const cpuCards = getLocalStorage("Cpu-Hand");
     const playCards = getLocalStorage("Player-Hand");
-    document.querySelector(".winner").innerText = "Computer Wins the Hand"
+    document.querySelector(".winner").innerText = "You Lost"
 
     const losCard = playCards.cards[0];
     const winCard = cpuCards.cards[0];
@@ -94,13 +110,13 @@ export function draw (){
 
     const curValCpu = cpuCards.cards[1].value;
     const curValPlay = playCards.cards[1].value;
-    if (curValCpu > curValPlay){
+    if (CARD_VALUE_MAP[curValCpu] > CARD_VALUE_MAP[curValPlay]){
         cpuWinsDraw();
     }
-    if (curValPlay > curValCpu){
+    if (CARD_VALUE_MAP[curValPlay] > CARD_VALUE_MAP[curValCpu]){
         playerWinsDraw();
     }
-    if (curValCpu == curValPlay){
+    if (CARD_VALUE_MAP[curValCpu] == CARD_VALUE_MAP[curValPlay]){
         draw();
     }
 }

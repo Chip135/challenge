@@ -7,7 +7,7 @@ let playerEventListener = document.querySelector(".player-hand");
 
 async function getHands() {
     const deck = getLocalStorage("deck");
-    //if (!deck) {
+    if (!deck) {
     getDeck();
     const deckId = deck.deck_id;
     //console.log(deckId);
@@ -16,7 +16,7 @@ async function getHands() {
     //console.log(deckId)
     let playerHand = await getCards(26, deckId);
     setLocalStorage("Player-Hand", playerHand);
-    //} else {}
+    } else {}
 }
 
 getHands();
